@@ -582,7 +582,9 @@ class TreeView<T> extends StatefulWidget {
                     duration: animationDuration,
                     curve: animationCurve,
                     // Renders a unicode right-facing arrow. >
-                    child: const Icon(IconData(0x25BA), size: 14),
+                    child: const Center(
+                      child: Text('►', style: TextStyle(fontSize: 14)),
+                    ),
                   )
                 : null,
           ),
