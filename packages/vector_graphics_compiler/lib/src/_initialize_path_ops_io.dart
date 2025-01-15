@@ -4,6 +4,7 @@
 
 // ignore_for_file: avoid_print
 
+import 'dart:ffi';
 import 'dart:io';
 import 'svg/path_ops.dart';
 
@@ -28,7 +29,11 @@ bool initializePathOpsFromFlutterCache() {
     platform = 'darwin-x64';
     executable = 'libpath_ops.dylib';
   } else if (Platform.isLinux) {
-    platform = 'linux-x64';
+    if (Abi.current() == Abi.linuxArm64) {
+      platform = 'linux-arm64';
+    } else {
+      platform = 'linux-x64';
+    }
     executable = 'libpath_ops.so';
   } else {
     print('path_ops not supported on ${Platform.localeName}');
